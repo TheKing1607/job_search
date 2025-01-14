@@ -1,0 +1,133 @@
+@import './variables.scss';
+
+body{
+    background-color: $body_background;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1460px;
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.df {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background: $dark;
+    opacity: 0.5;
+    margin: 15px 0px;
+}
+
+.vertical-line {
+    height: 20px;
+    width: 1px;
+    background: $dark;
+    opacity: 0.5;
+    margin: 0px 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+}
+
+.mt50px {
+    margin-top: 50px;
+}
+
+.grid-cards-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.cards {
+    display: flex;
+    margin-top: 40px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    span {
+        text-decoration: none;
+        font-family: 'Segoe UI';
+        font-size: 17px;
+        font-weight: 500;
+        color: $dark;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    button {
+        text-align: center;
+        cursor: pointer;
+        background-color: $gray;
+        border-style: none;
+        outline: none;
+        border-radius: 10px;
+        padding: 9px 9px;
+        color: $dark;
+        font-family: 'Segoe UI';
+        font-size: 14px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: $light_green;
+    }
+}
+
+.tab-menu {
+    margin-top: 30px;
+
+    button {
+        cursor: pointer;
+        padding: 9px 10px;
+        outline: none;
+        border-bottom: 2px solid $blue;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        color: $dark;
+        font-family: 'Segoe UI';
+        font-size: 15px;
+        font-weight: 500;
+        transition: 0.2s;
+        background: none;
+    }
+
+    button:not(:first-child) {
+        margin-left: 10px;
+    }
+
+    button:hover {
+        background: $light_green;
+    }
+
+    button:focus {
+        background: $light_green;
+    }
+}
+
+button {
+    margin-top: 30px;
+}

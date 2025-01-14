@@ -103,11 +103,15 @@ def get_filtered_applicants(salary: str, experience: str, user_id: str, db: Sess
     salary_filter = salary_filters_for_applicants.get(salary)
     experience_filter = experience_filters_for_applicants.get(experience)
 
-    applicants = db.query(Applicant).filter(
-        Applicant.is_archived == False,
-        salary_filter,
-        experience_filter,
-    ).all()
+    query = db.query(Applicant).filter(Applicant.is_archived == False)
+
+    if salary_filter is not None:
+        query = query.filter(salary_filter)
+
+    if experience_filter is not None:
+        query = query.filter(experience_filter)
+
+    applicants = query.all()
 
     return applicants[::-1]
 

@@ -1,6 +1,7 @@
 from urllib import request
 
 from fastapi import Response, HTTPException
+from fastapi_jwt_auth.exceptions import MissingTokenError
 from sqlalchemy.orm import Session
 
 from config.jwt_config import AuthJWT
@@ -184,44 +185,17 @@ def refresh_token(response: Response, authorize: AuthJWT, user_id: str):
                         True,
                         "lax")
 
-    return {
-        "access_token": access_token
-    }
+    response.set_cookie("logged_in",
+                        True,
+                        settings.ACCESS_TOKEN_EXPIRES_IN * 60,
+                        settings.ACCESS_TOKEN_EXPIRES_IN * 60,
+                        "/",
+                        None,
+                        False,
+                        False,
+                        "lax")
 
-
-    # refresh_token = response.cookies.get("refresh_token")
-    #
-    # if not refresh_token:
-    #     raise HTTPException(
-    #         status_code=401,
-    #         detail="Refresh token is missing"
-    #     )
-    #
-    # try:
-    #     # Validate the refresh token
-    #     authorize.jwt_refresh_token_required()  # This validates the refresh token
-    #     user_id = authorize.get_jwt_subject()  # Extract the user_id from the refresh token
-    #
-    #     # Generate a new access token for the user
-    #     new_access_token = create_access_token(authorize, user_id)
-    #
-    #     # Set the new access token in the response cookie
-    #     response.set_cookie("access_token",
-    #                         new_access_token,
-    #                         max_age=settings.ACCESS_TOKEN_EXPIRES_IN * 60,
-    #                         httponly=True,
-    #                         samesite="lax")
-    #
-    #     return {"access_token": new_access_token}
-    #
-    # except Exception as e:
-    #     raise HTTPException(
-    #         status_code=401,
-    #         detail="Invalid or expired refresh token"
-    #     )
-    #
-    # except Exception as e:
-    #     raise HTTPException(status_code=401, detail="Invalid refresh token")
+    return access_token
 
 def logout_user(response: Response, authorize: AuthJWT):
     authorize.unset_jwt_cookies()

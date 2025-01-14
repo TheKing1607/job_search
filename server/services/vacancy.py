@@ -90,8 +90,11 @@ def get_vacancies_by_employer_id(employer_id: str, db: Session):
 
 def get_paginated_vacancies(page: int, confirmed: bool, archived: bool, user_id: str, db: Session):
     vacancies_arr = []
-    items_on_page = 6
+
+    items_on_page = 5
+
     offset = (page - 1) * items_on_page
+
     vacancies = db.query(Vacancy).filter(
         Vacancy.is_confirmed == confirmed,
         Vacancy.is_archived == archived
@@ -126,7 +129,7 @@ def get_paginated_vacancies(page: int, confirmed: bool, archived: bool, user_id:
 
 def get_filtered_vacancies(place: str, salary: str, experience: str, user_id: str, db: Session):
     vacancies_arr = []
-    # print(place)
+
     salary_filter = salary_filters_for_vacancy.get(salary)
     experience_filter = experience_filters_for_vacancy.get(experience)
 
@@ -136,10 +139,11 @@ def get_filtered_vacancies(place: str, salary: str, experience: str, user_id: st
         func.lower(Vacancy.place).contains(place.lower())
     )
 
-    if salary_filter:
+    if salary_filter is not None:
         vacancies = vacancies.filter(salary_filter)
 
-    if experience_filter:
+    # Áp dụng bộ lọc kinh nghiệm nếu tồn tại
+    if experience_filter is not None:
         vacancies = vacancies.filter(experience_filter)
 
     vacancies = vacancies.all()

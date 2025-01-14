@@ -6,7 +6,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DB_HOST: postgres  # Đảm bảo rằng DB_HOST trỏ đến tên service của PostgreSQL
+      DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: 1

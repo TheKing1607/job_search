@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: jobfinder_app
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 1
+      DB_NAME: JobFinder
+    ports:
+      - '8000:8000'
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16.1
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: JobFinder
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_data:/data/postgres
+    ports:
+      - '5432:5432'
+
+volumes:
+  postgres_data:

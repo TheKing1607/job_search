@@ -4,10 +4,10 @@ from models.vacancy import Vacancy
 from models.applicant import Applicant
 
 salary_filters_for_vacancy = {
-    "25-59": and_(Vacancy.salary.between(25000, 59000)),
-    "60-109": and_(Vacancy.salary.between(60000, 109000)),
-    "110-159": and_(Vacancy.salary.between(110000, 159000)),
-    "160": Vacancy.salary >= 160000
+    "0-20": and_(Vacancy.salary.between(0, 2000000)),
+    "20-80": and_(Vacancy.salary.between(2000000, 8000000)),
+    "80-160": and_(Vacancy.salary.between(8000000, 16000000)),
+    "160": Vacancy.salary >= 16000000
 }
 
 experience_filters_for_vacancy = {
@@ -18,10 +18,10 @@ experience_filters_for_vacancy = {
 }
 
 salary_filters_for_applicants = {
-    "25-59": and_(Applicant.salary.between(25000, 59000)),
-    "60-109": and_(Applicant.salary.between(60000, 109000)),
-    "110-159": and_(Applicant.salary.between(110000, 159000)),
-    "160": Applicant.salary >= 160000
+    "20-60": and_(Applicant.salary.between(2000000, 6000000)),
+    "60-100": and_(Applicant.salary.between(6000000, 10000000)),
+    "100-160": and_(Applicant.salary.between(10000000, 16000000)),
+    "160": Applicant.salary >= 16000000
 }
 
 experience_filters_for_applicants = {

@@ -1,0 +1,10 @@
+@import '../../../assets/variables.scss';
+
+.authForm{
+    .authHelp{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+    }
+}

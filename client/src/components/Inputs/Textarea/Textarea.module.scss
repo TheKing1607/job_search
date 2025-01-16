@@ -1,0 +1,32 @@
+@import '../../../assets/variables.scss';
+
+.textarea {
+    margin-top: 30px;
+
+    textarea {
+        font-family: 'Segoe UI';
+        font-weight: 400;
+        font-size: 16px;
+        background: $white;
+        border: 2px solid $gray;
+        outline: none;
+        border-radius: 10px;
+        width: 550px;
+        height: 300px;
+        padding-left: 15px;
+        padding-top: 10px;
+        transition: 0.2s;
+        resize: none;
+    }
+
+    textarea:focus {
+        border: 2px solid $green
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    display: flex;
+    flex-direction: column;
+}

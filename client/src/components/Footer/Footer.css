@@ -1,0 +1,59 @@
+/* Footer styles (Footer.css) */
+.footer {
+    margin-top: 50px;
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-links,
+.footer-contact {
+    width: 30%;
+    padding: 10px;
+}
+
+
+.footer-description {
+    font-size: 14px;
+}
+
+.footer-links-title,
+.footer-contact-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-links-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links-list li {
+    margin: 10px 0;
+}
+
+.footer-links-list a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-links-list a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 12px;
+}

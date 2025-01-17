@@ -6,7 +6,7 @@ import { access_token } from '../../constants/token';
 import { getUserInfo } from '../../services/user';
 import { getApplicantByUserID } from '../../services/applicant';
 import { getFilteredVacancies, getPaginatedVacancies, searchVacancies } from '../../services/vacancy';
-import { getFeedbackByVacancy } from '../../services/feedback';
+// import { getFeedbackByVacancy } from '../../services/feedback';
 
 import styles from './Vacancies.module.scss';
 
@@ -172,7 +172,7 @@ function Vacancies() {
                             />
                             <div className={`cards`}>
                                 <div className={`cards-content`}>
-                                    {vacancies && vacancies.length > 0 ? (
+                                    {vacancies.length > 0 ? (
                                         vacancies.map((vacancy) => (
                                             <VacancyCard
                                                 key={vacancy.id}
@@ -195,7 +195,7 @@ function Vacancies() {
                                                 showButtons={false}
                                             />
                                         ))
-                                    ) : searchResults && searchResults.length > 0 ? (
+                                    ) : searchResults.length > 0 ? (
                                         searchResults.map((vacancy) => (
                                             <VacancyCard
                                                 key={vacancy.id}
@@ -218,7 +218,7 @@ function Vacancies() {
                                                 showButtons={false}
                                             />
                                         ))
-                                    ) : filteredVacancies && filteredVacancies.length > 0 ? (
+                                    ) : filteredVacancies.length > 0 ? (
                                         filteredVacancies.map((vacancy) => (
                                             <VacancyCard
                                                 key={vacancy.id}

@@ -4,7 +4,7 @@ services:
   backend:
     build:
       context: ./server
-    container_name: jobfinder_backend
+    container_name: jobfinder_backend_v2
     depends_on:
       - postgres
     environment:
@@ -16,7 +16,7 @@ services:
   frontend:
     build:
       context: ./client
-    container_name: jobfinder_frontend
+    container_name: jobfinder_frontend_v2
     ports:
       - "3000:3000"
     stdin_open: true
@@ -24,16 +24,29 @@ services:
 
   postgres:
     image: postgres:16.1
-    container_name: postgres
+    container_name: jobfinder_postgres_v2
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1
       POSTGRES_DB: JobFinder
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data         # Lưu trữ dữ liệu PostgreSQL
+      - ./database/backup:/backup                      # Lưu file backup
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql # Tự động chạy init.sql
     ports:
       - "5432:5432"
     restart: unless-stopped
+
+  adminer:
+    image: adminer
+    container_name: jobfinder_adminer_v2
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
 
 volumes:
   postgres_data:
